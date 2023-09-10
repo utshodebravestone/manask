@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { AppContainer, ColumnTitle, FullColumnContainer } from "../styles";
+import { AppContainer } from "../styles";
 import Column from "./Column";
 import AddNewItem from "./AddNewItem";
 import Card from "./Card";
@@ -36,17 +36,10 @@ const App: FC = () => {
           dark
         />
       </Column>
-      <FullColumnContainer>
-        <AddNewItem
-          onAdd={(text) => console.log(text)}
-          toggleButtonText="+ Add another list"
-        />
-      </FullColumnContainer>
-      <FullColumnContainer>
-        <ColumnTitle>
-          <h2>Mange Your Tasks with Monask</h2>
-        </ColumnTitle>
-      </FullColumnContainer>
+      <AddNewItem
+        onAdd={(text) => console.log(text)}
+        toggleButtonText="+ Add another list"
+      />
     </AppContainer>
   );
 };

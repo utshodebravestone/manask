@@ -1,17 +1,23 @@
-import { useState } from "react";
 import { NewItemButton, NewItemFormContainer, NewItemInput } from "../styles";
+import useFocus from "../hooks/useFocus";
+import useForm from "../hooks/useInput";
 
 type Props = {
   onAdd(text: string): void;
 };
 
 const NewItemForm = ({ onAdd }: Props) => {
-  const [text, setText] = useState("");
+  const { value, setValue } = useForm("");
+  const ref = useFocus();
 
   return (
     <NewItemFormContainer>
-      <NewItemInput value={text} onChange={(e) => setText(e.target.value)} />
-      <NewItemButton onClick={() => onAdd(text)}>Create</NewItemButton>
+      <NewItemInput
+        ref={ref}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <NewItemButton onClick={() => onAdd(value)}>Create</NewItemButton>
     </NewItemFormContainer>
   );
 };
