@@ -1,13 +1,13 @@
 import { NewItemButton, NewItemFormContainer, NewItemInput } from "../styles";
 import useFocus from "../hooks/useFocus";
-import useForm from "../hooks/useInput";
+import useInput from "../hooks/useInput";
 
 type Props = {
   onAdd(text: string): void;
 };
 
 const NewItemForm = ({ onAdd }: Props) => {
-  const { value, setValue } = useForm("");
+  const { value, setValue } = useInput("");
   const ref = useFocus();
 
   return (
@@ -16,6 +16,9 @@ const NewItemForm = ({ onAdd }: Props) => {
         ref={ref}
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyUp={(e) => {
+          if (e.key === "Enter") onAdd(value);
+        }}
       />
       <NewItemButton onClick={() => onAdd(value)}>Create</NewItemButton>
     </NewItemFormContainer>

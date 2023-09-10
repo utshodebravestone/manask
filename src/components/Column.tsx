@@ -8,7 +8,7 @@ type Props = {
 const Column = ({ title, children }: PropsWithChildren<Props>) => {
   return (
     <ColumnContainer>
-      <ColumnTitle dark>{title}</ColumnTitle>
+      <ColumnTitle>{title}</ColumnTitle>
       {children}
     </ColumnContainer>
   );
