@@ -1,15 +1,28 @@
-import { PropsWithChildren } from "react";
 import { ColumnContainer, ColumnTitle } from "../styles";
+import useAppState from "../hooks/useAppState";
+import Card from "./Card";
+import AddNewItem from "./AddNewItem";
+import { addTask } from "../state/actions";
 
 type Props = {
-  title: string;
+  id: string;
+  text: string;
 };
 
-const Column = ({ title, children }: PropsWithChildren<Props>) => {
+const Column = ({ id, text }: Props) => {
+  const { getTasksByListId, dispatch } = useAppState();
+  const tasks = getTasksByListId(id);
+
   return (
     <ColumnContainer>
-      <ColumnTitle>{title}</ColumnTitle>
-      {children}
+      <ColumnTitle>{text}</ColumnTitle>
+      {tasks.map((task) => (
+        <Card key={task.id} id={task.id} text={task.text} />
+      ))}
+      <AddNewItem
+        onAdd={(text) => dispatch(addTask(text, id))}
+        toggleButtonText="+ Add another task"
+      />
     </ColumnContainer>
   );
 };
