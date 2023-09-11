@@ -16,7 +16,6 @@ const App: FC = () => {
         <AddNewItem
           onAdd={(text) => console.log(text)}
           toggleButtonText="+ Add another task"
-          $dark
         />
       </Column>
       <Column title="In Progress">
@@ -24,7 +23,6 @@ const App: FC = () => {
         <AddNewItem
           onAdd={(text) => console.log(text)}
           toggleButtonText="+ Add another task"
-          $dark
         />
       </Column>
       <Column title="Done">
@@ -33,7 +31,6 @@ const App: FC = () => {
         <AddNewItem
           onAdd={(text) => console.log(text)}
           toggleButtonText="+ Add another task"
-          $dark
         />
       </Column>
       <AddNewItem

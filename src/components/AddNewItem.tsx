@@ -5,10 +5,9 @@ import NewItemForm from "./NewItemForm";
 type Props = {
   onAdd(text: string): void;
   toggleButtonText: string;
-  dark?: boolean;
 };
 
-const AddNewItem = ({ onAdd, toggleButtonText, dark }: Props) => {
+const AddNewItem = ({ onAdd, toggleButtonText }: Props) => {
   const [showForm, toggleForm] = useToggle(false);
 
   if (showForm)
@@ -22,7 +21,7 @@ const AddNewItem = ({ onAdd, toggleButtonText, dark }: Props) => {
     );
 
   return (
-    <AddItemButton dark={dark} onClick={() => toggleForm()}>
+    <AddItemButton onClick={() => toggleForm()}>
       {toggleButtonText}
     </AddItemButton>
   );

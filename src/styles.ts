@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AppContainer = styled.div`
   align-items: flex-start;
-  background-color: #3179ba;
+  background-color: #d0d0d0;
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -35,15 +35,12 @@ export const CardContainer = styled.div`
   box-shadow: #091e4240 0px 1px 0px 0px;
 `;
 
-interface AddItemButtonProps {
-  dark?: boolean;
-}
-
-export const AddItemButton = styled.button<AddItemButtonProps>`
+export const AddItemButton = styled.button`
   background-color: #ffffff3d;
   border-radius: 3px;
   border: none;
-  color: ${(props) => (props.dark ? "#000" : "#fff")};
+  color: #000;
+  font-size: 1rem;
   cursor: pointer;
   max-width: 300px;
   padding: 10px 12px;
