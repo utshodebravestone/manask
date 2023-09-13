@@ -11,4 +11,13 @@ export type List = {
 
 export type AppState = {
   lists: List[];
+  draggedItem: DrabbleItem | null;
 };
+
+export type DrabbleColumn = {
+  id: string;
+  text: string;
+  type: "COLUMN";
+};
+
+export type DrabbleItem = DrabbleColumn;

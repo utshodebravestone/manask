@@ -1,10 +1,11 @@
 import { Dispatch, PropsWithChildren, createContext } from "react";
-import { AppState, List, Task } from "./types";
+import { AppState, DrabbleItem, List, Task } from "./types";
 import { Action } from "./actions";
 import { appStateReducer } from "./appStateReducer";
 import { useImmerReducer } from "use-immer";
 
 type Props = {
+  draggedItem: DrabbleItem | null;
   lists: List[];
   getTasksByListId(id: string): Task[];
   dispatch: Dispatch<Action>;
@@ -28,19 +29,22 @@ const appData: AppState = {
       tasks: [{ id: "c3", text: "Start learning Haskell" }],
     },
   ],
+  draggedItem: null,
 };
 
 export const AppStateContext = createContext<Props>({} as Props);
 
 export const AppStateProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useImmerReducer(appStateReducer, appData);
-  const { lists } = state;
+  const { draggedItem, lists } = state;
 
   const getTasksByListId = (id: string): Task[] =>
     lists.find((list) => list.id === id)?.tasks || [];
 
   return (
-    <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch }}>
+    <AppStateContext.Provider
+      value={{ draggedItem, lists, getTasksByListId, dispatch }}
+    >
       {children}
     </AppStateContext.Provider>
   );
